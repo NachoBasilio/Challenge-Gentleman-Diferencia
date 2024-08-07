@@ -16,3 +16,7 @@ Por ahora, me centraré en el backend utilizando JavaScript. No seguiré necesar
 - YouTube: ignadev
 
 También te recomiendo seguir a Alan de Gentleman Programing para obtener más contenido interesante sobre desarrollo y programación.
+
+## Estados de Apuntes
+
+- [SQL](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/SQL): Iniciado
