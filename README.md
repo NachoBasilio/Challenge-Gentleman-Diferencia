@@ -19,4 +19,4 @@ También te recomiendo seguir a Alan de Gentleman Programing para obtener más c
 
 ## Estados de Apuntes
 
-- [SQL](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/SQL): Iniciado
+- [SQL](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/SQL): Iniciado (06-08-24)
