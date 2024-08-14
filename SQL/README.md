@@ -67,3 +67,124 @@ El estándar SQL nos permite crear valores en diferentes tipos, vamos a ver algu
 En parte porque lo necesito y en parte porque es muy utilizado, me voy a centrar en MySQL en este reto.
 
 [![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+
+## Ejemplos de consultas SQL
+
+### SELECT
+
+SELECT * FROM users;
+
+- SELECT nos sirve para elegir qué queremos traer de una tabla en específico. El asterisco hace referencia a todos los campos, aunque podemos especificar campos específicos:
+
+SELECT name FROM users;
+SELECT user_id, name FROM users;
+
+### DISTINCT
+
+SELECT DISTINCT * FROM users;
+
+- La palabra clave DISTINCT asegura que los resultados no contengan filas duplicadas.
+
+SELECT DISTINCT age FROM users;
+
+- Este ejemplo trae solo las edades que no se repiten.
+
+### WHERE
+
+SELECT * FROM users WHERE age = 26;
+
+- WHERE limita el criterio con el que recuperamos los datos. Solo trae los usuarios que cumplen con que la edad sea 26.
+
+SELECT name FROM users WHERE age = 26;
+
+- Este ejemplo trae los nombres de las personas que tienen 26 años.
+
+### ORDER BY
+
+SELECT * FROM users WHERE age > 25 ORDER BY age DESC;
+
+- ORDER BY nos sirve para aplicar criterios de ordenamiento en cómo se muestran los resultados. DESC indica un orden descendente.
+
+### LIKE
+
+SELECT * FROM users WHERE email LIKE '%gmail.com';
+
+- LIKE permite filtrar resultados utilizando patrones. En este caso, se buscan las filas donde el valor en la columna email termine con "gmail.com". El % indica que puede haber cualquier texto antes de "gmail.com".
+
+### NOT LIKE
+
+SELECT * FROM users WHERE email NOT LIKE '%gmail.com';
+
+- NOT es el operador lógico de negación. Este ejemplo selecciona las filas donde el email no termina en "gmail.com".
+
+### AND y OR
+
+SELECT * FROM users WHERE email NOT LIKE '%gmail.com' AND age > 20;
+
+- AND nos sirve para concatenar criterios. Por ejemplo, en este caso, que el correo no sea gmail y que tenga más de 20 años. Ambos criterios deben cumplirse.
+
+SELECT * FROM users WHERE email NOT LIKE '%gmail.com' OR age > 20;
+
+- OR también sirve para concatenar criterios, pero en este caso basta con que uno de los dos se cumpla.
+
+### LIMIT
+
+SELECT * FROM users LIMIT 2;
+
+- LIMIT restringe la cantidad de resultados devueltos.
+
+### NULL
+
+SELECT * FROM users WHERE email IS NULL;
+
+SELECT * FROM users WHERE email IS NOT NULL;
+
+- Podemos usar IS NULL o IS NOT NULL para filtrar registros que sean o no sean NULL.
+
+### MAX y MIN
+
+SELECT MAX(age) FROM users;
+
+- MAX consigue el valor máximo (o mínimo con MIN). Solo devuelve el valor, sin la información de quién es.
+
+### COUNT
+
+SELECT COUNT(age) FROM users;
+
+- COUNT cuenta la cantidad de registros que tienen un valor asignado en la columna especificada.
+
+### SUM
+
+SELECT SUM(age) FROM users;
+
+- SUM suma todos los valores de la columna especificada.
+
+### AVG
+
+SELECT AVG(age) FROM users;
+
+- AVG devuelve la media aritmética de los valores en la columna especificada.
+
+### IN
+
+SELECT * FROM users WHERE name IN ('Nacho', 'Trini');
+
+- IN se usa para filtrar resultados que coincidan con alguno de los valores especificados.
+
+### BETWEEN
+
+SELECT * FROM users WHERE age BETWEEN 24 AND 26;
+
+- BETWEEN se utiliza para filtrar resultados que estén dentro de un rango especificado.
+
+### Alias
+
+SELECT name, init_date AS 'init' FROM users WHERE age BETWEEN 24 AND 26;
+
+- Podemos crear un alias para que se represente en el resultado de la búsqueda.
+
+### CONCAT
+
+SELECT CONCAT(name, ' ' ,surname) AS 'Nombre Completo' FROM users;
+
+- CONCAT se usa para combinar varios valores en un solo campo.

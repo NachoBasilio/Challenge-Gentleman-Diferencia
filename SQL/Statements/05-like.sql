@@ -1,0 +1,3 @@
+SELECT * FROM users WHERE email LIKE '%gmail.com'
+
+-- La cláusula LIKE nos permite filtrar resultados en una consulta SQL utilizando patrones. En este caso, '%gmail.com' indica que estamos buscando todas las filas en la tabla users donde el valor en la columna email termine con "gmail.com". El % al principio del patrón indica que puede haber cualquier texto antes de "gmail.com", tambien se lo puede colocar a final indicando de que algo arranque por x cosa y también se puede poner 2 para que solo contenga x cosa en cualquier lado.
