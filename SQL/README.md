@@ -188,3 +188,202 @@ SELECT name, init_date AS 'init' FROM users WHERE age BETWEEN 24 AND 26;
 SELECT CONCAT(name, ' ' ,surname) AS 'Nombre Completo' FROM users;
 
 - CONCAT se usa para combinar varios valores en un solo campo.
+
+### GROUP BY
+
+SELECT MAX(age) FROM users GROUP BY age;
+
+- GROUP BY agrupa los resultados en función de una columna. Aquí se agrupan los datos por edad y se obtiene la edad máxima dentro de cada grupo.
+
+SELECT count(age), age FROM users GROUP BY age;
+
+- Este comando es muy útil para agrupar datos en función de una columna determinada, por ejemplo podríamos utilizarlo para conseguir la cantidad de ventas por producto.
+
+SELECT producto, SUM(precio) AS total_ventas
+FROM ventas
+GROUP BY producto;
+
+- * producto es la columna por la que estás agrupando los datos.
+- * SUM(precio) es la función que estás aplicando a la columna precio.
+- * AS total_ventas es el alias que le estás dando a la columna que se genera con la función SUM(precio).
+
+### HAVING
+
+SELECT COUNT(age) FROM users HAVING COUNT(age) > 3;
+
+- HAVING se usa para aplicar condiciones sobre las funciones de agrupamiento, en este caso limita los resultados a aquellos con un conteo de edad mayor a 3.
+
+### CASE
+
+SELECT *,
+CASE
+	WHEN age > 24 THEN "Es mayor de 24"
+    ELSE "Es menor de 24"
+END AS "EsMayorQue"
+FROM users;
+
+- Con CASE vamos a tener un IF, luego del SELECT va una coma.
+
+SELECT *,
+CASE
+	WHEN age > 24 THEN "Es mayor de 24"
+    WHEN age = 24 THEN "Tiene 24"
+    ELSE "Es menor de 24"
+END AS "EsMayorQue"
+FROM users;
+
+- Se puede anidar. Aunque hay que tener cuidado, resulta que cuando se cumple una condición ya salta esa.
+
+## DATABASE
+
+CREATE DATABASE test;
+
+- Si bien depende del manejador de base de datos, en general se puede hacer uso de la siguiente sentencia para crear una base de datos. Las bases de datos se llaman en minúsculas.
+
+DROP DATABASE test;
+
+- Ahora tenemos una sentencia DROP DATABASE que elimina la base de datos test.
+
+## Writing
+
+INSERT INTO users (name, surname, age, init_date, email) VALUES ("Nico", "Burraco", 21, "2003-01-23", "hola@gmail.com");
+
+- Con INSERT INTO vamos a agregar entidades a la tabla. Cosas como el ID en caso de que sea auto incremental no necesitan que le aclaremos su valor.
+
+### Ejemplo aclarando ID
+
+INSERT INTO users (user_id, name, surname, age, init_date, email) VALUES (26, "Nico", "Burraco", 21, "2003-01-23", "hola@gmail.com");
+
+UPDATE users SET name = "Juan" WHERE user_id = 27;
+
+- De esta manera vamos a poder actualizar un registro en la base de datos, usando la sentencia UPDATE, seguido del nombre de la tabla, SET, el nombre de la columna que queremos actualizar, el valor que queremos asignarle y finalmente la condición que debe cumplir el registro que queremos actualizar.
+
+UPDATE users SET age = 21, init_date = "2020-10-12" WHERE user_id = 23;
+
+- En este caso estamos actualizando la edad y la fecha de inicio de un usuario con user_id 23. O sea, actualizamos más de una columna a la vez.
+
+DELETE FROM users WHERE user_id = 27;
+
+- Con el DELETE se borra el registro de la tabla. SIEMPRE se debe tener cuidado con el DELETE ya que no se puede recuperar la información. El WHERE es importante para indicar qué registro se va a borrar, no se debe olvidar.
+
+## Tables
+
+CREATE TABLE persons (
+	id int,
+    name varchar(100),
+    age int,
+    email varchar(50),
+    created date
+);
+
+- Así vamos a crear una tabla en la base de datos. Resulta interesante recordar que tenemos que agregar el nombre de la columna, el tipo de dato y si es requerido o no.
+
+### Restricciones
+
+#### NOT NULL
+
+CREATE TABLE persons2 (
+	id int 	NOT NULL,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created date
+);
+
+- **NOT NULL**: Indica que el campo no puede ser nulo.
+
+#### UNIQUE
+
+CREATE TABLE persons3 (
+	id int NOT NULL,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created datetime,
+    UNIQUE(id)
+);
+
+- **UNIQUE**: Indica que el campo no puede repetirse.
+
+#### PRIMARY KEY
+
+CREATE TABLE person4 (
+	id int NOT NULL,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created datetime,
+    UNIQUE(id),
+    PRIMARY KEY(id)
+);
+
+- **PRIMARY KEY**: Indica que el campo es la llave primaria de la tabla.
+
+#### CHECK
+
+CREATE TABLE person4 (
+	id int NOT NULL,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created datetime,
+    UNIQUE(id),
+    PRIMARY KEY(id),
+    CHECK(age>=18)
+);
+
+- **CHECK**: Indica que el campo debe cumplir con una condición. Nuestras bases de datos y tablas van a tener muchas restricciones y eso es lo que nos va a permitir tener una base de datos consistente.
+
+#### DEFAULT
+
+CREATE TABLE persons4 (
+	id int NOT NULL,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created datetime DEFAULT CURRENT_TIMESTAMP(), -- CURRENT_TIMESTAMP es una función que nos va a dar la fecha y hora actual.
+    UNIQUE(id),
+    PRIMARY KEY(id),
+    CHECK(age>=18)
+);
+
+- **DEFAULT**: Indica que el campo tiene un valor por defecto.
+
+#### AUTO_INCREMENT
+
+CREATE TABLE persons5 (
+	id int NOT NULL AUTO_INCREMENT,
+    name varchar(100) NOT NULL,
+    age int,
+    email varchar(50),
+    created datetime DEFAULT CURRENT_TIMESTAMP(),
+    UNIQUE(id),
+    PRIMARY KEY(id),
+    CHECK(age>=18)
+);
+
+- **AUTO_INCREMENT**: Indica que el campo se va a autoincrementar.
+
+### DROP TABLE
+
+DROP TABLE persons6;
+
+- **DROP TABLE**: Elimina una tabla de la base de datos.
+
+### ALTER TABLE
+
+ALTER TABLE persons6
+ADD surname varchar(50);
+
+- **ALTER TABLE**: Modifica una tabla de la base de datos.
+- **ADD COLUMN**: Agrega una columna a la tabla.
+
+ALTER TABLE persons6
+RENAME COLUMN surname TO description;
+
+- **RENAME COLUMN**: Renombra una columna de la tabla. Se pone el RENAME COLUMN y el nombre de la columna que se quiere cambiar y luego TO y el nuevo nombre de la columna.
+
+ALTER TABLE persons6
+MODIFY COLUMN description varchar(250);
+
+- **MODIFY COLUMN**: Modifica una columna de la tabla. Se pone el MODIFY COLUMN y el nombre de la columna que se quiere modificar y luego el nuevo tipo de dato.
