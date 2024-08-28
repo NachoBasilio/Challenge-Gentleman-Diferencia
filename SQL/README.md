@@ -414,3 +414,5 @@ En una relación N:N, múltiples registros en una tabla pueden estar relacionado
 - **IMPORTANTE:** A estas tablas intermedias, normalmente se les da un nombre que es una concatenación de los nombres de las tablas que se están relacionando.
 
 ![](https://sqlearning.com/es/introduccion-sql-server/relaciones/relacion-NN.png)
+
+
