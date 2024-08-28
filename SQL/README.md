@@ -387,3 +387,30 @@ ALTER TABLE persons6
 MODIFY COLUMN description varchar(250);
 
 - **MODIFY COLUMN**: Modifica una columna de la tabla. Se pone el MODIFY COLUMN y el nombre de la columna que se quiere modificar y luego el nuevo tipo de dato.
+
+### Relaciones en Bases de Datos Relacionales
+
+#### Relación 1 : 1
+Esta relación se trata de una relación donde un registro de una tabla se relaciona con un solo registro de otra tabla.
+
+- **FOREIGN KEY(user_id) REFERENCES users(user_id):** Con esto estamos diciendo que la columna `user_id` de la tabla `dni` es una llave foránea que se relaciona con la columna `user_id` de la tabla `users`. Las claves foráneas son una forma de relacionar dos tablas, en este caso estamos relacionando la tabla `dni` con la tabla `users`.
+
+![](https://i.sstatic.net/w9ooX.gif)
+
+#### Relación 1 : N
+Este tipo de relación ocurre cuando un registro en una tabla puede estar relacionado con múltiples registros en otra tabla.
+
+- **Ejemplo:** Una compañía puede tener varios empleados, pero cada empleado solo trabaja para una compañía. Aquí la relación es 1:N entre la tabla `companies` y la tabla `users`.
+- Primero agregamos una columna `company_id` a la tabla `users` para poder relacionarla con la tabla `companies`.
+- Luego, añadimos la restricción de llave foránea usando `ADD CONSTRAINT fk_company FOREIGN KEY (company_id) REFERENCES companies(company_id)`. El `CONSTRAINT` es una manera de identificar la restricción que estamos agregando.
+
+![](https://sqlearning.com/es/introduccion-sql-server/relaciones/relacion-1aN.png)
+
+#### Relación N : N
+En una relación N:N, múltiples registros en una tabla pueden estar relacionados con múltiples registros en otra tabla. Para gestionar esta relación, se utiliza una tabla intermedia.
+
+- **Ejemplo:** Imagina que tienes una tabla de `users` y una tabla de `languages`, donde un usuario puede conocer varios lenguajes de programación, y un lenguaje puede ser conocido por varios usuarios. Para modelar esta relación, se crea una tabla intermedia `users_languages` que contiene los IDs de ambas tablas.
+
+- **IMPORTANTE:** A estas tablas intermedias, normalmente se les da un nombre que es una concatenación de los nombres de las tablas que se están relacionando.
+
+![](https://sqlearning.com/es/introduccion-sql-server/relaciones/relacion-NN.png)
