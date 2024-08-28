@@ -8,7 +8,7 @@ CREATE TABLE dni (
     dni_number INT NOT NULL,
     user_id INT	, 
     UNIQUE(dni_id),
-	FOREIGN KEY(user_id) REFERENCES users(user_id)
+	  FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 -- Aqui podemos ver varias cosas y terminos nuevos:
@@ -28,4 +28,30 @@ ALTER TABLE users
 ADD company_id INT;
 
 --Luego tenemos que agregar la restriccion, para eso vamos a usar ADD FOREIGN KEY.
+
+ALTER TABLE users 
+ADD CONSTRAINT fk_compenie FOREIGN KEY (company_id) REFERENCES companies(company_id)
+
+-- El CONSTRAINT es una manera de luego poder company_identificar la restriccion que estamos agregando, en este caso la llamamos fk_compenie. Pero en teoria no es necesario ponerle un nombre.
+
+-- Relacion N : N
+
+-- Ahora vamos a crear una tabla que represente los diferentes luguajes de programacion que los usuarios pueden conocer.
+
+CREATE TABLE languages(
+	language_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	name VARCHAR(100) NOT NULL
+)
+
+-- Para relacionar los usuarios con los diferentes lenguajes deberemos crear una tabla intermedia que realcione los ids de los usuarios con los ids de los lenguajes.
+-- A estas tablas intermedias le solemos poner de nombre la concatenacion de los nombres de las tablas que estamos relacionando.
+
+CREATE TABLE users_languages(
+    users_language_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    user_id INT,
+    language_id INT,
+    FOREIGN KEY(user_id) REFERENCES users(user_id),
+    FOREIGN KEY(language_id) REFERENCES languages(language_id),
+    UNIQUE (user_id, language_id)
+);
 
