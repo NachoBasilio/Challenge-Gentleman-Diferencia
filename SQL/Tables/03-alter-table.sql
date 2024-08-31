@@ -19,3 +19,12 @@ ADD CONSTRAINT fk_compenie FOREIGN KEY (company_id) REFERENCES companies(company
 
 -- El CONSTRAINT es una restriccion que se le pone a la tabla, en este caso estamos poniendo una restriccion de llave foranea, que se llama fk_compenie, que se relaciona con la columna company_id de la tabla companies. El nombre de la restricción es útil para identificarla y para poder referirse a ella en futuras modificaciones, como eliminar la restricción si es necesario.
 
+-- Agregar NOT NULL a una columna que ya existe:
+
+ALTER TABLE users_languages
+MODIFY COLUMN user_id INT NOT NULL;
+
+ALTER TABLE users_languages
+MODIFY COLUMN language_id INT NOT NULL;
+
+-- En este caso estamos agregando la restricción NOT NULL a las columnas user_id y language_id de la tabla users_languages.
