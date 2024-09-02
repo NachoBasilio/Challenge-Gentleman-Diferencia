@@ -415,4 +415,57 @@ En una relación N:N, múltiples registros en una tabla pueden estar relacionado
 
 ![](https://i.sstatic.net/l7fDF.png)
 
+### JOIN en SQL
+
+#### Inner Join
+El `INNER JOIN` se utiliza para retornar las filas de dos o más tablas que cumplen con una condición.
+
+SELECT * FROM users INNER JOIN dni ON users.user_id = dni.user_id;
+
+- En este caso, se seleccionan todas las columnas de la tabla `users` y de la tabla `dni`, donde el `user_id` de la tabla `users` sea igual al `user_id` de la tabla `dni`. En teoría de conjuntos, el `INNER JOIN` nos devuelve la intersección de los conjuntos de las dos tablas.
+
+SELECT * FROM users JOIN dni ON users.user_id = dni.user_id;
+
+- En la mayoría de los casos, se puede omitir la palabra `INNER`, ya que por defecto se realiza un `INNER JOIN`.
+
+SELECT CONCAT(name, " " , surname), dni_number FROM users JOIN dni ON users.user_id = dni.user_id ORDER BY age;
+
+- En este ejemplo, se concatena el nombre y el apellido de los usuarios, y se muestra el `dni_number` de la tabla `dni`, ordenado por la edad de los usuarios.
+
+SELECT CONCAT(users.name, " " , users.surname) AS "Nombre completo", companies.name AS "Laburo" FROM users JOIN companies ON users.company_id = companies.company_id;
+
+- En una relación uno a muchos, donde cada usuario tiene una sola empresa, este `JOIN` se utiliza para seleccionar el nombre completo de los usuarios y el nombre de la empresa donde trabajan.
+
+SELECT users.name, languages.name FROM users_languages JOIN users ON users_languages.user_id = users.user_id JOIN languages ON users_languages.language_id = languages.language_id;
+
+- En una relación muchos a muchos, donde un usuario puede conocer varios lenguajes y un lenguaje puede ser conocido por varios usuarios, este `JOIN` se utiliza para seleccionar el nombre de los usuarios y el nombre de los lenguajes que hablan.
+
+#### Left Join
+El `LEFT JOIN` retorna todas las filas de la tabla de la izquierda y las filas de la tabla de la derecha que cumplen con la condición especificada.
+
+SELECT * FROM users LEFT JOIN dni ON users.user_id = dni.user_id ORDER BY age;
+
+- Este ejemplo muestra todas las filas de la tabla `users` y las filas correspondientes de la tabla `dni`. Si no hay coincidencia en `dni`, las columnas de `dni` se rellenan con `NULL`.
+
+SELECT users.name, languages.name FROM users LEFT JOIN users_languages ON users.user_id = users_languages.user_id LEFT JOIN languages ON users_languages.language_id = languages.language_id;
+
+- Aquí se selecciona el nombre de los usuarios y el nombre de los lenguajes que hablan. Si un usuario no habla ningún lenguaje, aparecerá `NULL` en el nombre del lenguaje.
+
+#### Right Join
+El `RIGHT JOIN` retorna todas las filas de la tabla de la derecha y las filas de la tabla de la izquierda que cumplen con la condición especificada.
+
+SELECT * FROM users RIGHT JOIN dni ON users.user_id = dni.user_id;
+
+- Este `JOIN` es similar al `LEFT JOIN`, pero se devuelven todas las filas de la tabla de la derecha (`dni`) y las correspondientes filas de la izquierda (`users`). Si no hay coincidencia en `users`, las columnas de `users` se rellenan con `NULL`.
+
+SELECT users.name, languages.name FROM users RIGHT JOIN users_languages ON users.user_id = users_languages.user_id RIGHT JOIN languages ON users_languages.language_id = languages.language_id;
+
+- En este caso, se muestran todos los lenguajes y los usuarios que hablan esos lenguajes. Si un lenguaje no es hablado por ningún usuario, aparecerá `NULL` en el nombre del usuario.
+
+#### Full Join (UNION ALL)
+En MySQL no existe la función `FULL JOIN`, por lo que se utiliza `UNION`. Se debe especificar qué columnas mostrar en el `SELECT`.
+
+SELECT users.user_id AS u_user_id, dni.user_id AS d_user_id FROM users LEFT JOIN dni ON users.user_id = dni.user_id UNION ALL SELECT users.user_id AS u_user_id, dni.user_id AS d_user_id FROM users RIGHT JOIN dni ON users.user_id = dni.user_id;
+
+- Este ejemplo combina los resultados de un `LEFT JOIN` y un `RIGHT JOIN` para obtener todas las coincidencias posibles de ambas tablas, incluyendo las filas que no tienen coincidencias en la otra tabla.
 
