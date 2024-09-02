@@ -13,7 +13,7 @@ CREATE TABLE persons (
 -- NOT NULL: Indica que el campo no puede ser nulo.
 
 CREATE TABLE persons2 (
-	id int 	NOT NULL,
+	  id int 	NOT NULL,
     name varchar(100) NOT NULL,
     age int,
     email varchar(50),
@@ -23,7 +23,7 @@ CREATE TABLE persons2 (
 -- UNIQUE: Indica que el campo no puede repetirse.
 
 CREATE TABLE persons3 (
-	id int NOT NULL,
+  	id int NOT NULL,
     name varchar(100) NOT NULL,
     age int,
     email varchar(50),
