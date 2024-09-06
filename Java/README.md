@@ -182,11 +182,92 @@ final double PI = 3.14159;
 final int TAMANIO_MAXIMO = 100;
 ```
 
+### Tipos de Datos en Java
 
+Java ofrece varios tipos de datos primitivos, cada uno con un tamaño específico:
 
+- int: Entero de 32 bits. Ejemplo: int n = 1234567890;
+- long: Entero de 64 bits. Ejemplo: long nL = 12345678901L;
+- float: Número decimal de 32 bits con precisión simple. Ejemplo: float nF = 123.456F;
+- double: Número decimal de 64 bits con precisión doble. Ejemplo: double nD = 123.456;
+- char: Carácter de 2 bits. Ejemplo: char nC = 'a';
+- boolean: Valor lógico que ocupa 2 bits. Ejemplo: boolean nB = true;
 
+Desde Java 10, también es posible utilizar la inferencia de tipos con var para crear variables con el tipo inferido automáticamente.
 
+### Operadores
 
+Java ofrece una variedad de operadores que permiten realizar diferentes tipos de operaciones:
 
+- Operadores aritméticos: +, -, *, /, %
+- Incremento y decremento:
+   - Pre-incremento/decremento (++a, --a) modifica el valor antes de asignarlo.
+   - Post-incremento/decremento (a++, a--) asigna el valor antes de modificarlo.
+     
+- Clase Math: Ofrece funciones matemáticas avanzadas como:
+   - Raíz cuadrada: Math.sqrt(9)
+   - Potencias: Math.pow(3, 2)
+   - Redondeo: Math.round(5.6), Math.ceil(5.1), Math.floor(5.9)
+   - Valor absoluto: Math.abs(-5)
+   - Máximo y mínimo: Math.max(5, 10), Math.min(5, 10)
 
+### Casting (Conversión de Tipos)
 
+El casting permite convertir un tipo de dato en otro, ya sea de forma implícita o explícita:
+
+- Casting implícito: Sucede automáticamente cuando no hay pérdida de información. Ejemplo: double c = a / b;
+- Casting explícito: Se usa cuando puede haber pérdida de información o cuando se quiere ser específico. Ejemplo: int i = (int) d;
+
+### Estructuras Condicionales
+
+- if, else if, else: Permiten ejecutar código condicionalmente dependiendo de una expresión booleana.
+
+```java
+if (age >= 18) {
+    System.out.println("Eres mayor de edad");
+} else {
+    System.out.println("Eres menor de edad");
+}
+```
+
+- Operadores de equidad y comparación: ==, !=, <, >, <=, >=
+- Operadores lógicos: &&, ||, !
+- switch: Evalúa una variable y ejecuta el bloque correspondiente al valor que coincida.
+
+```java
+switch (dia) {
+    case 1:
+        System.out.println("Lunes");
+        break;
+    // Otros casos...
+    default:
+        System.out.println("Día no válido");
+}
+```
+### Funciones en Java
+
+Una función es un bloque de código que realiza una tarea específica y puede devolver un valor.
+
+- Funciones con retorno:
+
+```java
+public static int suma(int a, int b) {
+    return a + b;
+}
+```
+
+- Funciones sin retorno (void):
+
+```java
+public static void imprimirMensaje(String mensaje) {
+    System.out.println(mensaje);
+}
+```
+
+- Ejemplo de cálculo:
+   - Área de un círculo:
+     ```java
+     public static double areaDeUnCirculo(int radio) {
+       return (Math.PI * Math.pow(radio, 2));
+     }
+     ```
