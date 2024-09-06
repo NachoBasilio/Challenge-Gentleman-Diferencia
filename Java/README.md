@@ -77,3 +77,116 @@ Si quieres cambiar de version puedes usar el siguiente comando:
 sudo update-alternatives --config java
 ```
 
+En Java los archivos llevan la extensión `.java` y para compilarlos se utiliza el comando `javac` seguido del nombre del archivo. Por ejemplo:
+
+```bash
+javac MiPrograma.java
+```
+
+Esto generará un archivo con extensión `.class` que contiene el bytecode de la aplicación. Para ejecutarlo, se utiliza el comando `java` seguido del nombre de la clase principal (sin la extensión `.class`). Por ejemplo:
+
+```bash 
+java MiPrograma
+```
+
+## Primer "Hola mundo en Java"
+
+```java 
+public class HolaMundo {
+    public static void main(String[] args) {
+        System.out.println("¡Hola, mundo!");
+    }
+}
+```
+
+Como puede ver el codigo se divide en varias partes:
+
+1. **public:** Es un modificador de acceso que indica que la clase es accesible desde cualquier otra clase.
+2. **class:** Es una palabra clave que se utiliza para definir una clase.
+3. **HolaMundo:** Es el nombre de la clase, tiene que coincidir con el nombre del archivo y tiene que estar en UpperCamelCase.
+4. **public static void main(String[] args):** Es el método principal de la clase. Es el punto de entrada de la aplicación y se ejecuta cuando se inicia el programa.
+5. **System.out.println("¡Hola, mundo!");:** Es una instrucción que imprime el texto "¡Hola, mundo!" en la consola.
+
+## Cómo Crear y Ejecutar un Archivo JAR en Java 
+
+### Estructura de Archivos
+1. Código fuente: .java
+2. Directorio de salida: dist/
+3. Archivo de manifiesto: MANIFEST.MF
+
+Pasos: 
+
+1. Compilar el codigo Java:
+
+```bash
+javac -d dist nombreDelArchivo.java
+```
+
+* nombreDelArchivo es el nombre del archivo que contiene el código fuente.
+* -d dist indica que los archivos compilados se guardarán en el directorio dist/.
+
+2. Crear el achivo MANIFEST.MF:
+
+```plaintext
+Manifest-Version: 1.0
+Main-Class: NombreDeLaClasePrincipal
+```
+
+* Main-Class: NombreDeLaClasePrincipal es el nombre de la clase principal que contiene el método main.
+
+3. Crear el archivo JAR:
+
+```bash
+jar cfm NombreDelArchivo.jar MANIFEST.MF -C dist .
+```
+* NombreDelArchivo es el nombre del archivo JAR que se creará.
+* MANIFEST.MF es el archivo de manifiesto que se utilizará.
+* -C dist . indica que se incluirán los archivos del directorio dist/ en el archivo JAR.
+
+4. Ejecutar el archivo JAR:
+
+```bash
+java -jar NombreDelArchivo.jar
+```
+
+#### Notas:
+
+* Archivo MANIFEST.MF debe estar en el directiorio principal.
+* Estructura del JAR: El archivo MANIFEST.MF se incluirá en el directorio META-INF dentro del archivo JAR.
+
+## Declara variables en Java
+
+En Java, las variables se declaran especificando el tipo de dato seguido del nombre de la variable. Por ejemplo:
+
+```java
+int numero = 10;
+String nombre = "Juan";
+double precio = 19.99;
+boolean activo = true;
+```
+
+### Convenciones de nomenclatura
+
+#### En variables:
+
+- **LowerCamelCase:** Es una convención de nomenclatura que se utiliza para nombrar variables, métodos y clases en Java. Consiste en escribir la primera palabra en minúscula y las palabras siguientes en mayúscula. Por ejemplo: `nombreDeVariable`, `nombreDeMetodo`, `NombreDeClase`.
+
+#### En constantes:
+
+- **UPPER_CASE:** Es una convención de nomenclatura que se utiliza para nombrar constantes en Java. Consiste en escribir todas las letras en mayúscula y separar las palabras con guiones bajos. Por ejemplo: `NOMBRE_DE_CONSTANTE`, `PI`, `TAMANIO_MAXIMO`.
+
+Hablando de constantes, estas se declaran con la palabra clave `final`, ademas de respetar la convención de nomenclatura `UPPER_CASE`. Por ejemplo:
+
+```java
+final double PI = 3.14159;
+final int TAMANIO_MAXIMO = 100;
+```
+
+
+
+
+
+
+
+
+
