@@ -1,6 +1,5 @@
 ![Banner](https://cdn-images-1.medium.com/fit/t/1600/480/1*tZEdL85CFLWU_FRidB0Gtw.jpeg)
 
-
 # Challenge-Gentleman-Programming
 
 Este repositorio se centra en mi aprendizaje sobre backend. La idea es seguir el roadmap de roadmap.sh en relación al backend y crear una carpeta para cada uno de los cuadrados amarillos que representan un punto importante dentro de este camino de aprendizaje.
@@ -16,7 +15,6 @@ Por ahora, me centraré en el backend utilizando JavaScript. No seguiré necesar
 Además de continuar con mi aprendizaje en backend, he decidido ampliar mis horizontes y aprender a desarrollar Progressive Web Apps (PWAs) para proyectos personales. Las PWAs combinan lo mejor de las aplicaciones web y móviles, ofreciendo una experiencia de usuario similar a la de una aplicación nativa, pero con la facilidad de desarrollo y mantenimiento de una aplicación web.
 
 Este nuevo enfoque me permitirá explorar tecnologías como Service Workers, Web App Manifests, y otras herramientas que hacen posible la creación de aplicaciones web confiables, rápidas y atractivas.
-
 
 ## Perfiles en Redes Sociales
 
