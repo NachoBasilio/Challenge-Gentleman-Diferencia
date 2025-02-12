@@ -3,15 +3,16 @@ let usuario = {
     edad: 26
 }
 
-fetch('http://reques.in/api/users', {
+fetch('https://reqres.in/api/users', {
     method: 'POST',
     body: JSON.stringify(usuario),
     headers: {
         'Content-Type': 'application/json'
     }
 })
-.then(res=> res.json)
-.then(console.log)
-.catch(error => {
-    console.error(error)
+.then(res => {
+    return res.json()
+})
+.then(data => {
+    console.log(data)
 })
