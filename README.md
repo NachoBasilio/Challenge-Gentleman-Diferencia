@@ -30,3 +30,4 @@ También te recomiendo seguir a Alan de Gentleman Programing para obtener más c
 - [SQL](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/SQL): Iniciado (06-08-24) - Bases terminadas (02-09-24)
 - [Java](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/Java): Iniciado (04-09-24)
 - [JavaScript](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/JavaScript): Iniciado (06-02-25)
+- [QA](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/Testing/QAEngineer): Iniciado (12-08-25)
