@@ -20,4 +20,13 @@ public class PokemonApiTest {
         Response response = steps.getPokemonList(10, 0);
         steps.validateResponse(response);
     }
+
+    @Test
+    @DisplayName("Se obtiene un solo pokemon por nombre y se valida su nombre y ID")
+    @Severity(SeverityLevel.CRITICAL)
+    void getUnPokemon_debeDevolver200YEsePokemon(){
+        steps.setBaseUri();
+        Response response = steps.getSinglePokemon("pikachu");
+        steps.validaResponseUnPokemon(response, "pikachu", 25);
+    }
 }

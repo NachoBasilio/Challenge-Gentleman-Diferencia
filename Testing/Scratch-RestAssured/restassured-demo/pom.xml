@@ -17,6 +17,7 @@
     <restassured.version>5.4.0</restassured.version>
     <allure.version>2.27.0</allure.version>
     <aspectj.version>1.9.22.1</aspectj.version>
+    <testng.version>7.10.2</testng.version>
   </properties>
 
   <dependencies>
@@ -42,13 +43,31 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Allure -->
+    <!-- TestNG (Assert + opcionalmente tests TestNG) -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Allure JUnit 5 -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit5</artifactId>
       <version>${allure.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- (Opcional) Allure TestNG: habilitar reportes para tests TestNG -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-testng</artifactId>
+      <version>${allure.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Allure Rest-Assured -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-rest-assured</artifactId>
@@ -67,23 +86,6 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
-        <configuration>
-          <useModulePath>false</useModulePath>
-          <argLine>
-            -javaagent:${project.build.directory}/aspectjweaver-${aspectj.version}.jar
-            -Dorg.aspectj.weaver.showWeaveInfo=false
-            -Daj.weaving.verbose=false
-          </argLine>
-          <includes>
-            <include>**/*Test.java</include>
-          </includes>
-        </configuration>
-      </plugin>
-
 
       <!-- Copiamos el agent a target/ para evitar rutas con espacios -->
       <plugin>
@@ -109,24 +111,28 @@
         </executions>
       </plugin>
 
+      <!-- Runner de tests: JUnit 5 + TestNG + AspectJ agent -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
-          <!-- SIN module path para que el agent teja -->
           <useModulePath>false</useModulePath>
-
-          <!-- *** SIN tokens @{...} ni ${...} *** -->
           <argLine>
             -javaagent:${project.build.directory}/aspectjweaver-${aspectj.version}.jar
-            -Dorg.aspectj.weaver.showWeaveInfo=true
-            -Daj.weaving.verbose=true
+            -Dorg.aspectj.weaver.showWeaveInfo=false
+            -Daj.weaving.verbose=false
           </argLine>
-
           <includes>
             <include>**/*Test.java</include>
+            <!-- Si tenés clases TestNG con otro patrón, agregá más includes -->
+            <!-- <include>**/*IT.java</include> -->
           </includes>
+          <!-- Si querés forzar un suite TestNG:
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+          -->
         </configuration>
       </plugin>
 
