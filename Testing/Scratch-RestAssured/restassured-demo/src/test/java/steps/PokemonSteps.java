@@ -53,7 +53,7 @@ public class PokemonSteps {
 
             //Otra forma de imprimir algo especifico es con un JSONPth
             JsonPath jsonPath = response.jsonPath();
-            String name = jsonPath.getString("name");
+            String name = jsonPath.getString("name"); 
             int id = jsonPath.getInt("id");
             System.out.println("Nombre del Pokémon: " + name);
             System.out.println("ID del Pokémon: " + id);
