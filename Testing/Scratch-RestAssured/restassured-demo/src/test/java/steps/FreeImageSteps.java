@@ -14,7 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class FreeImageSteps {
-    File imageFile = new File("src/test/resources/imagen.png");
+    String name = "imagen.png";
+    File imageFile = new File("src/test/resources/" + name);
     String baseURI;
 
     @Step("Configurar base URI de FreeImageHos")
@@ -47,9 +48,10 @@ public class FreeImageSteps {
             .body("status_code", equalTo(200))
             .body("status_txt", equalTo("OK"))
             .body("image.extension", equalTo("png"))
-            .body("image.original_filename", equalTo("imagen.png"))
             .body("image.url", notNullValue())
-            .body("image.url_viewer", notNullValue());
+            .body("image.url_viewer", notNullValue())
+            .body("image.image.url", notNullValue())
+            .body("image.original_filename", equalTo(name));
 
         Allure.addAttachment("Response JSON", "application/json", response.asPrettyString(), ".json");
 
