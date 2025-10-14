@@ -1,13 +1,10 @@
 package payloads;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 /**
- * Clase que construye dinámicamente el payload JSON para el endpoint /posts.
- * Permite personalizar título, cuerpo y userId, y obtener el JSON final como String.
+ * Payload para el endpoint /posts de la API falsa.
+ * Hereda utilidades comunes de BasePayload.
  */
-public class FakePost {
+public class FakePost extends BasePayload {
     private String title = "Nuevo Post";
     private String body = "Contenido del post";
     private int userId = 1;
@@ -35,17 +32,8 @@ public class FakePost {
         return this;
     }
 
-    public String toJson() {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode json = mapper.createObjectNode();
-        json.put("title", title);
-        json.put("body", body);
-        json.put("userId", userId);
-
-        try {
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
-        } catch (Exception e) {
-            throw new RuntimeException("❌ Error generando JSON del FakePost", e);
-        }
-    }
+    // Getters y setters
+    public String getTitle() { return title; }
+    public String getBody() { return body; }
+    public int getUserId() { return userId; }
 }
