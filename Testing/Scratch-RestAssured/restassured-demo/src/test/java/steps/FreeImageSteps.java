@@ -4,8 +4,6 @@ import static io.restassured.RestAssured.given;
 
 import java.io.File;
 
-import org.testng.Assert;
-
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
