@@ -1,11 +1,7 @@
-
-
-fetch('./no-encontrado.html')
-    .then(resp => {
-        return resp.text()
+fetch('https://datatables.net')
+    .then(resp => resp.text())
+    .then(html => {
+        console.log(html);
+        document.body.innerHTML = html;
     })
-    .then(html=>{
-        console.log(html)
-        let body = document.querySelector('body')
-        body.innerHTML = html
-    })
+    .catch(err => console.error(err));
