@@ -16,6 +16,12 @@ Además de continuar con mi aprendizaje en backend, he decidido ampliar mis hori
 
 Este nuevo enfoque me permitirá explorar tecnologías como Service Workers, Web App Manifests, y otras herramientas que hacen posible la creación de aplicaciones web confiables, rápidas y atractivas.
 
+## Nuevo Enfoque: Estudio de MCP (2026)
+
+Desde hoy, 26-03-2026, voy a arrancar a estudiar MCP (Model Context Protocol) para entender mejor cómo se conectan herramientas, agentes y contextos dentro de flujos de trabajo más avanzados.
+
+Para ordenar este estudio, agregué una carpeta específica llamada [MCP](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/MCP) con subcarpetas para separar fundamentos, clientes, servidores y recursos.
+
 ## Perfiles en Redes Sociales
 
 ¡Sígueme en mis perfiles en redes sociales!
@@ -31,3 +37,4 @@ También te recomiendo seguir a Alan de Gentleman Programing para obtener más c
 - [Java](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/Java): Iniciado (04-09-24)
 - [JavaScript](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/JavaScript): Iniciado (06-02-25)
 - [QA](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/Testing/QAEngineer): Iniciado (12-08-25)
+- [MCP](https://github.com/NachoBasilio/Challenge-Gentleman-Diferencia/tree/main/MCP): Iniciado (26-03-26)
