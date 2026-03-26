@@ -1,0 +1,2 @@
+Esta es una línea de texto escrita en el archivo.
+Esta es una línea adicional añadida al archivo.
